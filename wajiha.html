@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Wajiha! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', cursive;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .balloons {
+            position: fixed;
+            bottom: -100px;
+            animation: float-up 6s ease-in-out infinite;
+        }
+
+        @keyframes float-up {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-50px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .screen {
+            display: none;
+            animation: slideIn 0.8s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Screen 1: Mystery Door */
+        .mystery-door {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 80px 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(245, 87, 108, 0.5);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .door-icon {
+            font-size: 8em;
+            margin-bottom: 20px;
+            animation: doorShake 1.5s ease-in-out infinite;
+        }
+
+        @keyframes doorShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        .mystery-door h1 {
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .mystery-door p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.4em;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .mystery-btn {
+            background: white;
+            color: #f5576c;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .mystery-btn:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+
+        /* Screen 2: Cake Cutting */
+        .cake-screen {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 80px 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(250, 112, 154, 0.5);
+            text-align: center;
+            max-width: 650px;
+            width: 100%;
+        }
+
+        .cake-screen h2 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .cake-container {
+            position: relative;
+            margin: 40px auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cake-container:hover {
+            transform: scale(1.05);
+        }
+
+        .cake {
+            font-size: 12em;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        .candle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            animation: flicker 1s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .cut-instruction {
+            color: white;
+            font-size: 1.3em;
+            margin-top: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Screen 3: Birthday Messages */
+        .messages-screen {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 80px 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(168, 237, 234, 0.5);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .messages-screen h2 {
+            color: #5f27cd;
+            font-size: 3.2em;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-box {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-box h3 {
+            color: #f093fb;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .message-box p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .emoji-row {
+            font-size: 2em;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .continue-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Screen 4: Final Wishes */
+        .wishes-screen {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.5);
+            max-width: 750px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .wishes-screen h2 {
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 35px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .wish-card p {
+            color: #333;
+            font-size: 1.3em;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+
+        .special-name {
+            color: #f5576c;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .signature {
+            text-align: right;
+            color: #667eea;
+            font-size: 1.5em;
+            font-style: italic;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+
+        .celebration-emojis {
+            font-size: 3em;
+            margin: 30px 0;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .sparkle {
+            position: fixed;
+            font-size: 2em;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="confettiContainer"></div>
+    <div id="sparkleContainer"></div>
+    
+    <div class="container">
+        <!-- Screen 1: Mystery Door -->
+        <div class="screen active" id="screen1">
+            <div class="mystery-door">
+                <div class="door-icon">🚪</div>
+                <h1>A Special Surprise Awaits!</h1>
+                <p>Someone very special has a birthday today...</p>
+                <p>Are you ready to discover who? 🎈</p>
+                <button class="mystery-btn" onclick="revealBirthday()">Open the Door! 🎉</button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Cake Cutting -->
+        <div class="screen" id="screen2">
+            <div class="cake-screen">
+                <h2>🎂 Happy Birthday Wajiha! 🎂</h2>
+                <p style="color: white; font-size: 1.5em; margin-bottom: 20px;">📅 February 2nd - Your Special Day! 📅</p>
+                <div class="cake-container" onclick="cutCake()">
+                    <div class="candle">🕯️</div>
+                    <div class="cake">🎂</div>
+                </div>
+                <p class="cut-instruction">👆 Click the cake to cut it! 👆</p>
+            </div>
+        </div>
+
+        <!-- Screen 3: Birthday Messages -->
+        <div class="screen" id="screen3">
+            <div class="messages-screen">
+                <h2>🎊 Special Birthday Messages 🎊</h2>
+                
+                <div class="message-box">
+                    <h3>🌟 You're Amazing! 🌟</h3>
+                    <p>Wajiha, you light up every room you enter! Your smile is contagious, your laugh is the best sound in the world, and your friendship means everything to me.</p>
+                </div>
+
+                <div class="emoji-row">🎈 🎁 🎉 🎊 🎂 🎈</div>
+
+                <div class="message-box">
+                    <h3>💝 Best Friend Forever 💝</h3>
+                    <p>Thank you for being the most incredible friend anyone could ask for. You've been there through thick and thin, making every moment brighter and every challenge easier.</p>
+                </div>
+
+                <div class="emoji-row">⭐ 🌟 ✨ 💫 ⭐</div>
+
+                <div class="message-box">
+                    <h3>🎯 This Year is Yours! 🎯</h3>
+                    <p>May this birthday bring you everything you've been dreaming of! New adventures, amazing memories, endless laughter, and all the happiness in the world!</p>
+                </div>
+
+                <button class="continue-btn" onclick="showWishes()">See Final Wishes 💕</button>
+            </div>
+        </div>
+
+        <!-- Screen 4: Final Wishes -->
+        <div class="screen" id="screen4">
+            <div class="wishes-screen">
+                <h2>🎉 Happy Birthday Wajiha! 🎉</h2>
+                <p style="color: white; font-size: 1.4em; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">✨ February 2, 2025 ✨</p>
+                <div class="wish-card">
+                    <div class="celebration-emojis">🎂 🎈 🎁 🎊 ✨</div>
+                    
+                    <p>Dear <span class="special-name">Wajiha</span>,</p>
+                    
+                    <p>On this special day, I want you to know how grateful I am to have you in my life. You're not just my best friend – you're family, my partner in crime, and the person who makes every day better just by being in it.</p>
+                    
+                    <p>Here's to another year of incredible adventures, late-night talks, inside jokes that no one else gets, and memories that we'll cherish forever!</p>
+                    
+                    <p>May this year bring you:</p>
+                    <p>✨ Dreams that come true<br>
+                    💕 Love that never fades<br>
+                    🎯 Success in everything you do<br>
+                    😊 Happiness beyond measure<br>
+                    🌟 Adventures that take your breath away</p>
+                    
+                    <div class="celebration-emojis">🎉 🎊 🎂 🎈 🎁</div>
+                    
+                    <p>Cheers to you, <span class="special-name">Wajiha</span>! Let's make this year unforgettable!</p>
+                    
+                    <div class="signature">Your Best Friend Noman 💖</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#f5576c', '#4facfe', '#00f2fe', '#ffd89b', '#f093fb'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.getElementById('confettiContainer').appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            document.getElementById('sparkleContainer').appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        setInterval(createSparkle, 300);
+
+        function goToScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen' + screenNum).classList.add('active');
+        }
+
+        function revealBirthday() {
+            createConfetti();
+            setTimeout(() => {
+                goToScreen(2);
+            }, 500);
+        }
+
+        function cutCake() {
+            createConfetti();
+            const cakeContainer = document.querySelector('.cake-container');
+            cakeContainer.style.transform = 'scale(1.2)';
+            
+            setTimeout(() => {
+                cakeContainer.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    goToScreen(3);
+                    createConfetti();
+                }, 500);
+            }, 800);
+        }
+
+        function showWishes() {
+            createConfetti();
+            setTimeout(() => {
+                goToScreen(4);
+                createConfetti();
+            }, 500);
+        }
+
+        // Continuous confetti
+        setInterval(createConfetti, 5000);
+        createConfetti();
+    </script>
+</body>
+</html>
